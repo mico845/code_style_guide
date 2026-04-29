@@ -6,13 +6,13 @@
 
 ## Read
 
-[C++ Code Style Guide](https://gitee.com/kemi741213/code_style_guide/site/index.html) 👈 
+[C++ Code Style Guide]() 👈 
 
 
 ## Run
 
 更新 `references` 里的 `*.md` MarkDown 到 SKILL,
-同时把 `references/html` 里的网页加载到 `site/index.html` 里.
+同时把 `references/html` 里的网页加载到 `docs/index.html` 里
 ```bash
 python scripts/generate_site.py
 ```

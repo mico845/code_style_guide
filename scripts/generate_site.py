@@ -9,7 +9,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MARKDOWN_REFERENCES_DIR = ROOT / "references"
 HTML_REFERENCES_DIR = ROOT / "references" / "html"
-SITE_DIR = ROOT / "site"
+SITE_DIR = ROOT / "docs"
 SKILL_PATH = ROOT / "SKILL.md"
 
 GENERATED_SITE_FILES = ("index.html", "styles.css")
