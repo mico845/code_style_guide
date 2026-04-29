@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import html
 import re
+import shutil
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -10,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MARKDOWN_REFERENCES_DIR = ROOT / "references"
 HTML_REFERENCES_DIR = ROOT / "references" / "html"
 SITE_DIR = ROOT / "docs"
+SITE_HTML_REFERENCES_DIR = SITE_DIR / "references" / "html"
 SKILL_PATH = ROOT / "SKILL.md"
 
 GENERATED_SITE_FILES = ("index.html", "styles.css")
@@ -35,6 +37,7 @@ def main() -> None:
     chapters = load_html_chapters()
     SITE_DIR.mkdir(exist_ok=True)
     clean_generated_site_files()
+    copy_html_chapters(chapters)
     (SITE_DIR / "index.html").write_text(
         render_index(chapters), encoding="utf-8", newline="\n"
     )
@@ -42,6 +45,7 @@ def main() -> None:
     update_skill_references(load_markdown_references())
 
     print(f"Loaded {len(chapters)} chapter files from {HTML_REFERENCES_DIR}")
+    print(f"Copied {len(chapters)} chapter files to {SITE_HTML_REFERENCES_DIR}")
     print(f"Generated {SITE_DIR / 'index.html'}")
     print(f"Generated {SITE_DIR / 'styles.css'}")
     print(f"Updated {SKILL_PATH}")
@@ -141,6 +145,15 @@ def clean_generated_site_files() -> None:
         path = SITE_DIR / filename
         if path.exists():
             path.unlink()
+
+
+def copy_html_chapters(chapters: list[HtmlChapter]) -> None:
+    if SITE_HTML_REFERENCES_DIR.exists():
+        shutil.rmtree(SITE_HTML_REFERENCES_DIR)
+    SITE_HTML_REFERENCES_DIR.mkdir(parents=True)
+
+    for chapter in chapters:
+        shutil.copy2(chapter.source_path, SITE_HTML_REFERENCES_DIR / chapter.filename)
 
 
 def update_skill_references(references: list[MarkdownReference]) -> None:
@@ -250,7 +263,7 @@ def render_select_option(chapter: HtmlChapter, selected: bool) -> str:
 
 
 def chapter_src(chapter: HtmlChapter) -> str:
-    return f"../references/html/{chapter.filename}"
+    return f"references/html/{chapter.filename}"
 
 
 def render_styles() -> str:
