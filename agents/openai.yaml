@@ -1,0 +1,4 @@
+interface:
+  display_name: "C++ Style Guide"
+  short_description: "Apply the repository C++ style guide"
+  default_prompt: "Use $code-style-cpp-guide when writing, editing, or reviewing C++ code."

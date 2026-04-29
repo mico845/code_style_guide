@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>C++ Code Style Guide</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">C++ Code Style Guide</div>
+    <select class="chapter-select" aria-label="Chapter index">
+      <option value="../references/html/0.introduction.html" selected>0. 介绍</option>
+      <option value="../references/html/1.headers.html">1. 头文件</option>
+      <option value="../references/html/2.scope.html">2. 作用域</option>
+      <option value="../references/html/3.classes.html">3 类</option>
+      <option value="../references/html/4.functions.html">4. 函数</option>
+      <option value="../references/html/5.cpp-features.html">5. C++特性</option>
+      <option value="../references/html/6.naming-conventions.html">6. 命名约定</option>
+    </select>
+    <nav class="chapter-nav" aria-label="Chapter index">
+      <a class="chapter-link active" href="../references/html/0.introduction.html" data-src="../references/html/0.introduction.html" aria-current="page"><span>0. 介绍</span><small>0.introduction.html</small></a>
+      <a class="chapter-link" href="../references/html/1.headers.html" data-src="../references/html/1.headers.html" aria-current="false"><span>1. 头文件</span><small>1.headers.html</small></a>
+      <a class="chapter-link" href="../references/html/2.scope.html" data-src="../references/html/2.scope.html" aria-current="false"><span>2. 作用域</span><small>2.scope.html</small></a>
+      <a class="chapter-link" href="../references/html/3.classes.html" data-src="../references/html/3.classes.html" aria-current="false"><span>3 类</span><small>3.classes.html</small></a>
+      <a class="chapter-link" href="../references/html/4.functions.html" data-src="../references/html/4.functions.html" aria-current="false"><span>4. 函数</span><small>4.functions.html</small></a>
+      <a class="chapter-link" href="../references/html/5.cpp-features.html" data-src="../references/html/5.cpp-features.html" aria-current="false"><span>5. C++特性</span><small>5.cpp-features.html</small></a>
+      <a class="chapter-link" href="../references/html/6.naming-conventions.html" data-src="../references/html/6.naming-conventions.html" aria-current="false"><span>6. 命名约定</span><small>6.naming-conventions.html</small></a>
+    </nav>
+  </aside>
+  <main class="viewer">
+    <iframe
+      id="chapter-frame"
+      title="C++ Code Style Guide chapter"
+      src="../references/html/0.introduction.html"
+    ></iframe>
+  </main>
+  <script>
+    const frame = document.querySelector("#chapter-frame");
+    const links = Array.from(document.querySelectorAll(".chapter-link"));
+    const select = document.querySelector(".chapter-select");
+
+    function activate(src) {
+      frame.src = src;
+      links.forEach((link) => {
+        const active = link.dataset.src === src;
+        link.classList.toggle("active", active);
+        link.setAttribute("aria-current", active ? "page" : "false");
+      });
+      select.value = src;
+    }
+
+    links.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        activate(link.dataset.src);
+      });
+    });
+
+    select.addEventListener("change", () => activate(select.value));
+  </script>
+</body>
+</html>
