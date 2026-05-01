@@ -1,23 +1,42 @@
-# Code Style Guide
+# 📕 code-style-cpp-guide
 
-这是一份笔者自用的 Code Style Guide
+这是一份笔者自用的 Code Style C++ Guide
 
 也是一份 Agent SKILL
 
-## Read
+## 🌏 Website
 
-[C++ Code Style Guide](https://mico845.github.io/code_style_guide/) 👈 
+[C++ Code Style Guide](https://mico845.github.io/code-style-cpp-guide/) 👈 
 
 
-## Run
+## ▶️ Run
 
-更新 `references` 里的 `*.md` MarkDown 到 SKILL,
-同时把 `references/html` 里的网页复制到 `docs/references/html`，并加载到 `docs/index.html` 里
+执行：
+
 ```bash
 python scripts/generate_site.py
 ```
 
+该脚本将
 
-## LICENSE
+- 更新 `references/` 里的 `*.md` MarkDown 源文本到 `SKILL.md`
 
-MIT
+- 把 `references/html` 里的网页复制到 `docs/references/html`，并加载到 `docs/index.html`
+
+## 📁 Project Structure
+
+```
+.
+├─ docs/
+├─ references/
+│  ├─ html/
+│  │  └─ *.html
+│  └─ *.md
+├─ scripts/
+│  └─ generate_site.py
+└─ SKILL.md
+```
+
+## 📄 License
+
+MIT License
